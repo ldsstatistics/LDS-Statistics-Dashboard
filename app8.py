@@ -38,7 +38,7 @@ def app():
     st.markdown('See Wikipedia: [The Church of Jesus Christ of Latter-day Saints Membership Statistics](https://en.wikipedia.org/wiki/The_Church_of_Jesus_Christ_of_Latter-day_Saints_membership_statistics#Membership_Growth)')
     st.markdown('(a) 2019 Membership information unavailabe. Used 2018 Membership numbers instead.')
 
-    membershipByCountryFiles = listdir('data/Membership By Country')
+    membershipByCountryFiles = listdir('data/Membership by Country')
     countries = [x.split('.')[0] for x in membershipByCountryFiles]
 
     st.title('Comparison Between Countries')
@@ -55,7 +55,7 @@ def app():
     
     fig = go.Figure()
     for country in countriesSelected:
-        df = pd.read_csv('data/Membership By Country/{}.csv'.format(country), thousands=',')
+        df = pd.read_csv('data/Membership by Country/{}.csv'.format(country), thousands=',')
         df = df[df['Year'] >= 1987]
         df['Annual Membership Growth Rate'] = pd.to_numeric(df['Annual Membership Growth Rate'].str.replace('%', ''), errors='coerce')
         df['Annual Unit Growth Rate'] = pd.to_numeric(df['Annual Unit Growth Rate'].str.replace('%', ''), errors='coerce')
