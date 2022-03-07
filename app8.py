@@ -40,6 +40,7 @@ def app():
 
     membershipByCountryFiles = listdir('data/Membership by Country')
     countries = [x.split('.')[0] for x in membershipByCountryFiles]
+    countries.sort()
 
     st.title('Comparison Between Countries')
     defaultCountries = ['United States', 'Brazil', 'Mexico', 'Philippines']
