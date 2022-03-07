@@ -12,8 +12,8 @@ def app():
     text += 'Year: ' + df['Year'].astype(str) + '<br>'
     text += 'Net Value: $' + df['Net Value'].astype(int).astype(str) + '<br>'
     text += '2010 Value: $' + df['2010'].astype(str) + '<br>'
-    hovertemplate = '%{text}<extra></extra>'
-    fig.add_trace(go.Bar(x=df['2010'], y=df['Name'], orientation='h', hovertemplate=hovertemplate, text=text))
+    hovertemplate = '%{hovertext}<extra></extra>'
+    fig.add_trace(go.Bar(x=df['2010'], y=df['Name'], orientation='h', hovertemplate=hovertemplate, hovertext=text))
     fig.update_layout(
         margin=dict(l=0, r=0, t=40, b=20),
         height=700,
@@ -61,8 +61,8 @@ def app():
     fig = go.Figure()
     text = df['Name'] + '<br>' + df['Position'] + '<br>'
     text += 'Income: $' + df['Income'].astype(int).astype(str) + '<br>'
-    hovertemplate = '%{text}<extra></extra>'
-    fig.add_trace(go.Bar(x=df['Income'], y=df['Name'], orientation='h', hovertemplate=hovertemplate, text=text))
+    hovertemplate = '%{hovertext}<extra></extra>'
+    fig.add_trace(go.Bar(x=df['Income'], y=df['Name'], orientation='h', hovertemplate=hovertemplate, hovertext=text))
     fig.update_layout(
         margin=dict(l=0, r=0, t=40, b=20),
         height=700,

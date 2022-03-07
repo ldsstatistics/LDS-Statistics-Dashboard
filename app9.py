@@ -18,10 +18,10 @@ def pluralMarriageFig(man, dob, lastName):
     text += 'Age of {}: '.format(lastName) + np.floor(ages_man).astype(int).astype(str) + '<br>'
     text += 'Children: ' + df['Children'].astype(str) + '<br>'
     
-    hovertemplate = '%{text}<extra></extra>'
+    hovertemplate = '%{hovertext}<extra></extra>'
 
     fig = go.Figure()
-    fig.add_trace(go.Scatter(x=ages_man, y=ages_wives, mode='markers', name='Ages', text=text, hovertemplate=hovertemplate))
+    fig.add_trace(go.Scatter(x=ages_man, y=ages_wives, mode='markers', name='Ages', hovertext=text, hovertemplate=hovertemplate))
     fig.update_layout(
         margin=dict(l=10, r=10, t=100, b=20),
         height=700,
@@ -56,10 +56,10 @@ def app():
         text += 'Age: ' + df['Age'] + '<br>'
         text += 'Age of Smith: ' + np.floor(ages_joseph).astype(int).astype(str) + '<br>'
         text += 'Marital Status: ' + df['Marital status at time of sealing'] + '<br>'
-        hovertemplate = '%{text}<extra></extra>'
+        hovertemplate = '%{hovertext}<extra></extra>'
 
         fig = go.Figure()
-        fig.add_trace(go.Scatter(x=ages_joseph, y=ages_wives, mode='markers', name='Ages', text=text, hovertemplate=hovertemplate))
+        fig.add_trace(go.Scatter(x=ages_joseph, y=ages_wives, mode='markers', name='Ages', hovertext=text, hovertemplate=hovertemplate))
         fig.update_layout(
             margin=dict(l=10, r=10, t=100, b=20),
             height=700,
@@ -85,10 +85,10 @@ def app():
         text += 'Type of Union: ' + df['Type of Union'] + '<br>'
         text += 'Children: ' + df['Children'] + '<br>'
         
-        hovertemplate = '%{text}<extra></extra>'
+        hovertemplate = '%{hovertext}<extra></extra>'
 
         fig = go.Figure()
-        fig.add_trace(go.Scatter(x=ages_brigham, y=ages_wives, mode='markers', name='Ages', text=text, hovertemplate=hovertemplate))
+        fig.add_trace(go.Scatter(x=ages_brigham, y=ages_wives, mode='markers', name='Ages', hovertext=text, hovertemplate=hovertemplate))
         fig.update_layout(
             margin=dict(l=10, r=10, t=100, b=20),
             height=700,
@@ -188,10 +188,10 @@ def app():
     df = df.sort_values('Number of Wives', ascending=False)
 
     text = df['Practitioner'] + '<br>' + 'Number of Wives: ' + df['Number of Wives'].astype(str) + '<br>' + 'Position: ' + df['Position']
-    hovertemplate = '%{text}<extra></extra>'
+    hovertemplate = '%{hovertext}<extra></extra>'
 
     fig = go.Figure()
-    fig.add_trace(go.Bar(x=df['Number of Wives'], y=df['Practitioner'], orientation='h', text=text, hovertemplate=hovertemplate))
+    fig.add_trace(go.Bar(x=df['Number of Wives'], y=df['Practitioner'], orientation='h', hovertext=text, hovertemplate=hovertemplate))
     fig.update_layout(
         margin=dict(l=0, r=0, t=40, b=20),
         height=800,
