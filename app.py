@@ -1,4 +1,4 @@
-import app1, app2, app3, app4, app5, app6, app7, app8, app9, app10, app11, app12
+import app1, app2, app3, app4, app5, app6, app7, app8, app9, app10, app11, app12, app13
 import streamlit as st
 
 st.set_page_config(
@@ -15,6 +15,7 @@ PAGES = {
     "Units by State": app6,
     "Finances in Canada": app3,
     "Finances in the UK": app4,
+    "Finances in Australia": app13,
     "Temples": app5,
     "Prophets": app11,
     "Plural Marriage": app9,

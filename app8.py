@@ -46,7 +46,7 @@ def app():
     defaultCountries = ['United States', 'Brazil', 'Mexico', 'Philippines']
     col1, col2 = st.columns([1, 4])
     with col1:
-        analysisSelected = st.radio('Choose Analysis', ['Membership', 'Annual Membership Growth Rate', 'Wards', 'Branches', 'Units', 'Annual Unit Growth Rate', 'Percent Members'])
+        analysisSelected = st.radio('Choose Analysis', ['Membership', 'Annual Membership Growth', 'Annual Membership Growth Rate', 'Wards', 'Branches', 'Units', 'Annual Unit Growth', 'Annual Unit Growth Rate', 'Percent Members'])
     countriesSelected = []
     for i in range(len(defaultCountries)):
         with col1:
@@ -58,8 +58,10 @@ def app():
     for country in countriesSelected:
         df = pd.read_csv('data/Membership by Country/{}.csv'.format(country), thousands=',')
         df = df[df['Year'] >= 1987]
-        df['Annual Membership Growth Rate'] = pd.to_numeric(df['Annual Membership Growth Rate'].str.replace('%', ''), errors='coerce')
-        df['Annual Unit Growth Rate'] = pd.to_numeric(df['Annual Unit Growth Rate'].str.replace('%', ''), errors='coerce')
+        df['Annual Membership Growth'] = df['Membership'].diff() / df['Year'].diff()
+        df['Annual Membership Growth Rate'] = df['Annual Membership Growth'] / (df['Membership'] - df['Membership'].diff()) * 100
+        df['Annual Unit Growth'] = df['Units'].diff() / df['Year'].diff()
+        df['Annual Unit Growth Rate'] = df['Annual Unit Growth'] / (df['Units'] - df['Units'].diff()) * 100
         df['Percent Members'] = df['Membership'] / df['Population'] * 100
         df[analysisSelected] = pd.to_numeric(df[analysisSelected], errors='coerce')
         fig.add_trace(go.Scatter(x=df['Year'], y=df[analysisSelected], mode='lines', name=country))

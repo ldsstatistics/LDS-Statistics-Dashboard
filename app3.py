@@ -5,7 +5,7 @@ import plotly.graph_objects as go
 def app():
     st.title('Finances in Canada')
     
-    df = pd.read_csv('data/LDS Church Finances Canada.csv', thousands=',')
+    df = pd.read_csv('data/Finances/LDS Church Finances Canada.csv', thousands=',')
 
     df5Years = df.tail(5)
 

@@ -5,7 +5,7 @@ import plotly.graph_objects as go
 def app():
     st.title('Finances in the UK')
     
-    df = pd.read_csv('data/LDS Church Finances UK.csv', thousands=',')
+    df = pd.read_csv('data/Finances/LDS Church Finances UK.csv', thousands=',')
 
     fig = go.Figure()
     fig.add_trace(go.Bar(x=df['Year End'], y=df['Tithing'], name='Tithing'))
