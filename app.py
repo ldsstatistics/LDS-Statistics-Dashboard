@@ -1,27 +1,30 @@
-import app1, app2, app3, app4, app5, app6, app7, app8, app9, app10, app11, app12, app13
 import streamlit as st
+from dashboards import statisticsByCountry2019, growthByCountry, membershipComparison
+from dashboards import fullerConsiderationAnalysis, unitsByCountry, unitsByState
+from dashboards import financesInAustralia, financesInCanada, financesInTheUK
+from dashboards import temples, prophets, pluralMarriage, wealthOfBrighamYoung
 
 st.set_page_config(
     page_title="LDS Statistics",
     layout="wide",
 )
 
-PAGES = {
-    "2019 Statistics by Country": app7,
-    "Growth by Country": app8,
-    "Membership Comparison": app10,
-    "Fuller Consideration Analysis": app1,
-    "Units by Country": app2,
-    "Units by State": app6,
-    "Finances in Canada": app3,
-    "Finances in the UK": app4,
-    "Finances in Australia": app13,
-    "Temples": app5,
-    "Prophets": app11,
-    "Plural Marriage": app9,
-    "Wealth of Brigham Young": app12,
+pages = {
+    '2019 Statistics by Country': statisticsByCountry2019,
+    'Growth by Country': growthByCountry,
+    'Membership Comparison': membershipComparison,
+    'Fuller Consideration Analysis': fullerConsiderationAnalysis,
+    'Units by Country': unitsByCountry,
+    'Units by State': unitsByState,
+    'Finances in Australia': financesInAustralia,
+    'Finances in Canada': financesInCanada,
+    'Finances in the UK': financesInTheUK,
+    'Temples': temples,
+    'Prophets': prophets,
+    'Plural Marriage': pluralMarriage,
+    'Wealth of Brigham Young': wealthOfBrighamYoung,
 }
-st.sidebar.title('Navigation')
-selection = st.sidebar.radio("Go to", list(PAGES.keys()))
-page = PAGES[selection]
-page.app()
+
+st.sidebar.title('LDS Data Dashboard')
+pageTitle = st.sidebar.radio('Go To', pages.keys())
+pages[pageTitle].app()
