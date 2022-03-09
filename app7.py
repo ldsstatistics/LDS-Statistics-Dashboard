@@ -10,7 +10,7 @@ def app():
 
     with col1:
         unitTypeSelected = st.radio('Choose Analysis', unitTypes)
-        numberOfCountries = st.radio('Number of Countries to Show', [10, 20, 30, 40, 50, 60], index=1)
+        numberOfCountries = st.radio('Number of Countries to Show', [10, 20, 30, 40, 50, 60, 100], index=1)
 
     df = pd.read_csv('data/Membership by country 2019.csv', thousands=',', keep_default_na=False)
     
