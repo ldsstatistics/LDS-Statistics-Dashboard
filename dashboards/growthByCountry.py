@@ -36,11 +36,57 @@ def app():
     
     st.markdown('Notes')
     st.markdown('See Wikipedia: [The Church of Jesus Christ of Latter-day Saints Membership Statistics](https://en.wikipedia.org/wiki/The_Church_of_Jesus_Christ_of_Latter-day_Saints_membership_statistics#Membership_Growth)')
-    st.markdown('(a) 2019 Membership information unavailabe. Used 2018 Membership numbers instead.')
+    st.markdown('(a) 2019 Membership information unavailable. Used 2018 Membership numbers instead.')
 
     membershipByCountryFiles = listdir('data/Membership by Country')
     countries = [x.split('.')[0] for x in membershipByCountryFiles]
     countries.sort()
+
+    st.title('Membership Growth')
+    defaultCountry = 'United States'
+    country = st.selectbox('Select Country', countries, countries.index(defaultCountry))
+
+    col1, col2 = st.columns(2)
+
+    df = pd.read_csv('data/Membership by Country/{}.csv'.format(country), thousands=',')
+    df = df[df['Year'] >= 2000]
+
+    fig = go.Figure()
+    fig.add_trace(go.Bar(x=df['Year'], y=df['Membership'], name=country))
+    fig.update_layout(margin=dict(l=0, r=0, t=40, b=20), xaxis_title='Year', yaxis_title='Membership')
+    with col1:
+        st.plotly_chart(fig, use_container_width=True)
+    
+    fig = go.Figure()
+    fig.add_trace(go.Bar(x=df['Year'], y=df['Wards'], name='Wards'))
+    fig.add_trace(go.Bar(x=df['Year'], y=df['Branches'], name='Branches'))
+    fig.update_layout(margin=dict(l=0, r=0, t=40, b=20), xaxis_title='Year', yaxis_title='Units', barmode='stack', legend={'orientation': 'h', 'yanchor': 'bottom', 'y': 1.02, 'xanchor': 'left', 'x': 0})
+    with col2:
+        st.plotly_chart(fig, use_container_width=True)
+
+    fig = go.Figure()
+    fig.add_trace(go.Bar(x=df['Year'], y=df['Membership'].diff() / df['Year'].diff(), name=country))
+    fig.update_layout(margin=dict(l=0, r=0, t=40, b=20), xaxis_title='Year', yaxis_title='Annual Membership Growth')
+    with col1:
+        st.plotly_chart(fig, use_container_width=True)
+    
+    fig = go.Figure()
+    fig.add_trace(go.Bar(x=df['Year'], y=df['Units'].diff() / df['Year'].diff(), name=country))
+    fig.update_layout(margin=dict(l=0, r=0, t=40, b=20), xaxis_title='Year', yaxis_title='Annual Unit Growth', barmode='stack', legend={'orientation': 'h', 'yanchor': 'bottom', 'y': 1.02, 'xanchor': 'left', 'x': 0})
+    with col2:
+        st.plotly_chart(fig, use_container_width=True)
+    
+    fig = go.Figure()
+    fig.add_trace(go.Bar(x=df['Year'], y=df['Membership'] / df['Units'], name=country))
+    fig.update_layout(margin=dict(l=0, r=0, t=40, b=20), xaxis_title='Year', yaxis_title='Members Per Congregation')
+    with col1:
+        st.plotly_chart(fig, use_container_width=True)
+
+    fig = go.Figure()
+    fig.add_trace(go.Bar(x=df['Year'], y=df['Membership'] / df['Population'] * 100, name=country))
+    fig.update_layout(margin=dict(l=0, r=0, t=40, b=20), xaxis_title='Year', yaxis_title='Percent Members')
+    with col2:
+        st.plotly_chart(fig, use_container_width=True)
 
     st.title('Comparison Between Countries')
     defaultCountries = ['United States', 'Brazil', 'Mexico', 'Philippines']
