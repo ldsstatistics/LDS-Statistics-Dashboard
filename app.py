@@ -1,7 +1,7 @@
 import streamlit as st
 from dashboards import statisticsByCountry2019, growthByCountry, membershipComparison
 from dashboards import fullerConsiderationAnalysis, unitsByCountry, unitsByState
-from dashboards import financesInAustralia, financesInCanada, financesInTheUK
+from dashboards import financesInAustralia, financesInCanada, financesInTheUK, financesInThe1900s
 from dashboards import temples, prophets, pluralMarriage, wealthOfBrighamYoung
 
 st.set_page_config(
@@ -19,6 +19,7 @@ pages = {
     'Finances in Australia': financesInAustralia,
     'Finances in Canada': financesInCanada,
     'Finances in the UK': financesInTheUK,
+    'Finances in the 1900s': financesInThe1900s,
     'Temples': temples,
     'Prophets': prophets,
     'Plural Marriage': pluralMarriage,
@@ -34,6 +35,7 @@ st.sidebar.markdown('[Fuller Consideration Membership Statistics](http://www.ful
 st.sidebar.markdown('[Fuller Consideration Daily Statistics](http://www.fullerconsideration.com/units.php)')
 st.sidebar.markdown('[Cumorah Project](https://www.cumorah.com/countries)')
 st.sidebar.markdown('[LDS Statistics](http://ldsstatistics.com)')
+st.sidebar.markdown('[Latter Data Saints](https://latterdatasaints.com/)')
 st.sidebar.markdown('[LDS Finances - The Widow\'s Mite Report](https://widowsmitereport.wordpress.com)')
 st.sidebar.markdown('[Temples](https://churchofjesuschristtemples.org)')
 st.sidebar.markdown('[Apostles - ThreeStory](http://threestory.com/apostles/apostles_all.html)')

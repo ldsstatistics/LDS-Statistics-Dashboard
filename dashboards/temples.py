@@ -84,3 +84,37 @@ def app():
         xaxis={'range': ['1980-01-01', '2022-01-01']},
     )
     st.plotly_chart(fig, use_container_width=True)
+
+    dfPresidents = pd.read_csv('data/Prophets.csv')
+    dfPresidents['Ordination'] = pd.to_datetime(dfPresidents['Ordination'])
+    dfPresidents['Death'] = pd.to_datetime(dfPresidents['Death'])
+    df['Announcement'] = pd.to_datetime(df['Announcement'])
+    df['Dedication'] = pd.to_datetime(df['Dedication'])
+
+    templeStatusCount = {'President': [], 'Announced': [], 'Completed': []}
+
+    for i, row in dfPresidents.iterrows():
+        templeStatusCount['President'].append(row['President'])
+        if pd.isnull(row['Death']):
+            templeStatusCount['Announced'].append(len(df[df['Announcement'] > row['Ordination']]))
+            templeStatusCount['Completed'].append(len(df[df['Dedication'] > row['Ordination']]))
+        else:
+            templeStatusCount['Announced'].append(len(df[(df['Announcement'] > row['Ordination']) & (df['Announcement'] < row['Death'])]))
+            templeStatusCount['Completed'].append(len(df[(df['Dedication'] > row['Ordination']) & (df['Dedication'] < row['Death'])]))
+
+    templeStatusCount = pd.DataFrame(templeStatusCount)
+    templeStatusCount = templeStatusCount.sort_values(by=['Announced'], ascending=False)
+
+    fig = go.Figure()
+    fig.add_trace(go.Bar(x=templeStatusCount['Announced'][:6], y=templeStatusCount['President'][:6], orientation='h', name='Announced'))
+    fig.add_trace(go.Bar(x=templeStatusCount['Completed'][:6], y=templeStatusCount['President'][:6], orientation='h', name='Completed', width=0.6))
+    fig.update_layout(
+        margin=dict(l=10, r=10, t=100, b=20),
+        title='Number of Temples Announced and Completed During Tenure as President',
+        legend={'orientation': 'h', 'yanchor': 'bottom', 'y': 1.02, 'xanchor': 'right', 'x': 1},
+        yaxis={'autorange': 'reversed'},
+        xaxis_title='Number of Temples',
+        barmode='overlay',
+    )
+    st.plotly_chart(fig, use_container_width=True)
+    
