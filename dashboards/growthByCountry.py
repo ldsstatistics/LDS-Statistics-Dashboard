@@ -58,47 +58,55 @@ def app():
         st.plotly_chart(fig, use_container_width=True)
     
     fig = go.Figure()
+    fig.add_trace(go.Bar(x=df['Year'], y=df['Membership'].diff() / df['Year'].diff(), name=country))
+    fig.update_layout(margin=dict(l=0, r=0, t=40, b=20), xaxis_title='Year', yaxis_title='Annual Membership Growth')
+    with col2:
+        st.plotly_chart(fig, use_container_width=True)
+    
+    fig = go.Figure()
     fig.add_trace(go.Bar(x=df['Year'], y=df['Wards'], name='Wards'))
     fig.add_trace(go.Bar(x=df['Year'], y=df['Branches'], name='Branches'))
     fig.update_layout(margin=dict(l=0, r=0, t=40, b=20), xaxis_title='Year', yaxis_title='Units', barmode='stack', legend={'orientation': 'h', 'yanchor': 'bottom', 'y': 1.02, 'xanchor': 'left', 'x': 0})
-    with col2:
-        st.plotly_chart(fig, use_container_width=True)
-
-    fig = go.Figure()
-    fig.add_trace(go.Bar(x=df['Year'], y=df['Membership'].diff() / df['Year'].diff(), name=country))
-    fig.update_layout(margin=dict(l=0, r=0, t=40, b=20), xaxis_title='Year', yaxis_title='Annual Membership Growth')
     with col1:
+        st.plotly_chart(fig, use_container_width=True)
+    
+    fig = go.Figure()
+    fig.add_trace(go.Bar(x=df['Year'], y=df['Stakes'], name='Stakes'))
+    fig.add_trace(go.Bar(x=df['Year'], y=df['Districts'], name='Districts'))
+    fig.update_layout(margin=dict(l=0, r=0, t=40, b=20), xaxis_title='Year', yaxis_title='Number of Stakes and Districts', barmode='stack', legend={'orientation': 'h', 'yanchor': 'bottom', 'y': 1.02, 'xanchor': 'left', 'x': 0})
+    with col2:
         st.plotly_chart(fig, use_container_width=True)
     
     fig = go.Figure()
     fig.add_trace(go.Bar(x=df['Year'], y=df['Units'].diff() / df['Year'].diff(), name=country))
     fig.update_layout(margin=dict(l=0, r=0, t=40, b=20), xaxis_title='Year', yaxis_title='Annual Unit Growth', barmode='stack', legend={'orientation': 'h', 'yanchor': 'bottom', 'y': 1.02, 'xanchor': 'left', 'x': 0})
-    with col2:
+    with col1:
         st.plotly_chart(fig, use_container_width=True)
     
     fig = go.Figure()
     fig.add_trace(go.Bar(x=df['Year'], y=df['Membership'] / df['Units'], name=country))
     fig.update_layout(margin=dict(l=0, r=0, t=40, b=20), xaxis_title='Year', yaxis_title='Members Per Congregation')
-    with col1:
+    with col2:
         st.plotly_chart(fig, use_container_width=True)
 
     fig = go.Figure()
     fig.add_trace(go.Bar(x=df['Year'], y=df['Membership'] / df['Population'] * 100, name=country))
     fig.update_layout(margin=dict(l=0, r=0, t=40, b=20), xaxis_title='Year', yaxis_title='Percent Members')
+    with col1:
+        st.plotly_chart(fig, use_container_width=True)
+    
+    fig = go.Figure()
+    fig.add_trace(go.Scatter(x=df['Year'], y=df['Membership'].diff() / df['Year'].diff() / (df['Membership'] - df['Membership'].diff()) * 100, mode='lines', name='Membership Growth %'))
+    fig.add_trace(go.Scatter(x=df['Year'], y=df['Units'].diff() / df['Year'].diff() / (df['Units'] - df['Units'].diff()) * 100, mode='lines', name='Unit Growth %'))
+    fig.update_layout(margin=dict(l=0, r=0, t=40, b=20), xaxis_title='Year', yaxis_title='Annual Growth %', legend=dict(orientation='h', yanchor='bottom', y=1, xanchor='left', x=0))
     with col2:
         st.plotly_chart(fig, use_container_width=True)
 
     st.title('Comparison Between Countries')
-    defaultCountries = ['United States', 'Brazil', 'Mexico', 'Philippines']
     col1, col2 = st.columns([1, 4])
     with col1:
-        analysisSelected = st.radio('Choose Analysis', ['Membership', 'Annual Membership Growth', 'Annual Membership Growth Rate', 'Wards', 'Branches', 'Units', 'Annual Unit Growth', 'Annual Unit Growth Rate', 'Percent Members'])
-    countriesSelected = []
-    for i in range(len(defaultCountries)):
-        with col1:
-            countrySelected = st.selectbox('Select Country ' + str(i+1), countries, countries.index(defaultCountries[i]))
-            if countrySelected not in countriesSelected:
-                countriesSelected.append(countrySelected)
+        countriesSelected = st.multiselect('Select Countries', countries, default=['United States', 'Brazil', 'Mexico', 'Philippines'])
+        analysisSelected = st.radio('Choose Analysis', ['Membership', 'Annual Membership Growth', 'Annual Membership Growth Rate', 'Wards', 'Branches', 'Units', 'Annual Unit Growth', 'Annual Unit Growth Rate', 'Districts', 'Stakes', 'Percent Members'])
     
     fig = go.Figure()
     for country in countriesSelected:
