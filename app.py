@@ -1,5 +1,5 @@
 import streamlit as st
-from dashboards import statisticsByCountry2019, growthByCountry, membershipComparison
+from dashboards import statisticsByCountry2021, statisticsByCountry2019, growthByCountry, membershipComparison
 from dashboards import fullerConsiderationAnalysis, unitsByCountry, unitsByState
 from dashboards import financesInAustralia, financesInCanada, financesInTheUK, financesInThe1900s
 from dashboards import temples, prophets, pluralMarriage, wealthOfBrighamYoung
@@ -10,6 +10,7 @@ st.set_page_config(
 )
 
 pages = {
+    '2021 Statistics by Country': statisticsByCountry2021,
     '2019 Statistics by Country': statisticsByCountry2019,
     'Growth by Country': growthByCountry,
     'Membership Comparison': membershipComparison,
