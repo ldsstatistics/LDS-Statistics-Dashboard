@@ -4,7 +4,7 @@ import pandas as pd
 import plotly.graph_objects as go
 
 def app():
-    st.title('Membership Growth Between 2009 - 2019')
+    st.title('Membership Growth Between 2019 - 2021')
     col1, col2 = st.columns([1, 4])
 
     with col1:
@@ -13,6 +13,9 @@ def app():
         continent = st.radio('Continent', ['Worldwide', 'Africa', 'Asia', 'Europe', 'North America', 'Oceania', 'South America'])
 
     df = pd.read_csv('data/Membership Growth By Country.csv', thousands=',', keep_default_na=False)
+
+    df['Membership Change'] = df['Membership - 2021'] - df['Membership - 2019']
+
     totalMembershipChange = df['Membership Change'].sum()
 
     if continent != 'Worldwide':
@@ -21,7 +24,6 @@ def app():
     df['Growth Percentage'] = df['Membership Change'] / df['Membership - 2009'] * 100
     df['Percentage of Total Growth'] = df['Membership Change'] / totalMembershipChange * 100
     
-    df['Country'] = df['Country'] + ' ' + df['Footnote']
     data = df.sort_values(analysisSelected, ascending=False)
     fig = go.Figure()
     fig.add_trace(go.Bar(x=data[analysisSelected][0:numberOfCountries], y=data['Country'][0:numberOfCountries], orientation='h'))
@@ -46,10 +48,14 @@ def app():
     defaultCountry = 'United States'
     country = st.selectbox('Select Country', countries, countries.index(defaultCountry))
 
-    col1, col2 = st.columns(2)
-
     df = pd.read_csv('data/Membership by Country/{}.csv'.format(country), thousands=',')
     df = df[df['Year'] >= 2000]
+
+    if pd.isna(df.loc[df['Year'] == 2020, 'Membership'].iloc[0]):
+        df.loc[df['Year'] == 2020, 'Membership'] = (df.loc[df['Year'] == 2019, 'Membership'].iloc[0] + df.loc[df['Year'] == 2021, 'Membership'].iloc[0]) / 2
+        st.markdown('Estimated 2020 membership as the midpoint between the 2019 and 2021 membership')
+
+    col1, col2 = st.columns(2)
 
     fig = go.Figure()
     fig.add_trace(go.Bar(x=df['Year'], y=df['Membership'], name=country))
@@ -111,6 +117,8 @@ def app():
     fig = go.Figure()
     for country in countriesSelected:
         df = pd.read_csv('data/Membership by Country/{}.csv'.format(country), thousands=',')
+        if pd.isna(df.loc[df['Year'] == 2020, 'Membership'].iloc[0]):
+            df.loc[df['Year'] == 2020, 'Membership'] = (df.loc[df['Year'] == 2019, 'Membership'].iloc[0] + df.loc[df['Year'] == 2021, 'Membership'].iloc[0]) / 2
         df = df[df['Year'] >= 1987]
         df['Annual Membership Growth'] = df['Membership'].diff() / df['Year'].diff()
         df['Annual Membership Growth Rate'] = df['Annual Membership Growth'] / (df['Membership'] - df['Membership'].diff()) * 100
