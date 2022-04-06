@@ -1,5 +1,5 @@
 Country,Continent,Members,Percent LDS,Temples,Missions,Districts,Stakes,Wards,Branches,Wards & Branches,FHC
-Antigua and Barbuda,North America,276,0.28,0,0,0,0,0,1,1,1
+Antigua and Barbuda,North America,264,0.27,0,0,0,0,0,1,1,1
 Aruba,North America,590,0.55,0,0,0,0,0,2,2,2
 Bahamas,North America,1074,0.28,0,0,0,0,0,3,3,1
 Barbados,North America,1134,0.39,0,1,1,0,0,3,3,1
@@ -7,41 +7,42 @@ Belize,North America,5519,1.39,0,0,0,0,0,12,12,2
 Canada,North America,199534,0.53,9,6,4,53,352,147,499,152
 Cayman Islands,North America,224,0.34,0,0,0,0,0,1,1,0
 Costa Rica,North America,52047,1.02,1,2,1,10,59,19,78,18
-Curacao,North America,575,0.37,0,0,0,0,0,1,1,1
+Curacao,North America,565,0.36,0,0,0,0,0,1,1,1
 Dominica,North America,145,0.2,0,0,0,0,0,1,1,0
 Dominican Republic,North America,145397,1.34,1,3,9,21,139,62,201,33
 El Salvador,North America,129194,1.99,1,3,0,22,129,29,158,38
-Grenada,North America,396,0.35,0,0,0,0,0,1,1,0
+Grenada,North America,438,0.39,0,0,0,0,0,1,1,0
 Guadeloupe,North America,548,,0,0,0,0,0,3,3,1
 Guatemala,North America,284780,1.69,2,7,12,51,297,139,436,84
 Haiti,North America,24911,0.22,1,1,4,5,27,21,48,11
 Honduras,North America,183405,1.85,1,4,5,31,179,57,236,62
-Jamaica,North America,6718,0.23,0,1,1,1,6,12,18,7
+Jamaica,North America,6668,0.23,0,1,1,1,6,12,18,7
 Martinique,North America,261,,0,0,0,0,0,1,1,1
-Mexico,North America,1498296,1.16,13,32,47,222,1355,494,1849,284
+Mexico,North America,1481530,1.16,13,32,47,222,1356,487,1843,278
 Nicaragua,North America,101133,1.53,0,2,4,12,71,38,109,23
-Panama,North America,60108,1.39,1,1,4,7,44,29,73,18
-Puerto Rico,North America,23473,0.73,0,1,1,5,27,11,38,8
-Saint Kitts and Nevis,North America,230,0.44,0,0,0,0,0,1,1,1
-Saint Lucia,North America,394,0.21,0,0,0,0,0,2,2,2
-Saint Vincent,North America,715,0.64,0,0,0,0,0,3,3,1
-Sint Maarten,North America,286,0.7,0,0,0,0,0,1,1,0
-Trinidad and Tobago,North America,3505,0.25,0,1,0,1,5,4,9,1
-United States,North America,6721032,2.05,81,108,5,1642,12677,1782,14459,0
+Panama,North America,59526,1.4,1,1,4,7,44,29,73,14
+Puerto Rico,North America,23395,0.73,0,1,0,5,27,12,39,8
+Saint Kitts and Nevis,North America,212,0.4,0,0,0,0,0,1,1,1
+Saint Lucia,North America,395,0.22,0,0,0,0,0,2,2,2
+Saint Vincent,North America,716,0.65,0,0,0,0,0,3,3,1
+Sint Maarten,North America,297,0.73,0,0,0,0,0,1,1,0
+Trinidad and Tobago,North America,3524,0.25,0,1,0,1,5,4,9,1
+United States,North America,6763019,2.05,82,109,6,1671,12858,1818,14676,0
+Virgin Islands,North America,589,1.96,0,0,0,0,0,2,2,0
 Argentina,South America,470843,1.05,2,13,27,78,484,250,734,123
-Bolivia,South America,217331,1.86,1,5,8,33,208,63,271,53
+Bolivia,South America,212148,1.84,1,5,8,33,207,63,270,52
 Brazil,South America,1456238,0.69,7,36,40,281,1774,402,2176,445
 Chile,South America,602373,3.18,2,10,16,74,410,158,568,100
 Colombia,South America,209985,0.42,2,5,10,30,176,73,249,51
-Ecuador,South America,258314,1.46,1,6,5,42,262,53,315,57
+Ecuador,South America,253781,1.46,1,5,6,42,261,52,313,57
 French Guiana,South America,488,,0,0,0,0,0,1,1,1
 Guyana,South America,6417,0.82,0,0,0,0,0,11,11,4
 Paraguay,South America,97389,1.37,1,2,9,11,61,72,133,20
-Peru,South America,624569,1.89,3,14,17,112,667,113,780,167
-Suriname,South America,1759,0.3,0,0,0,0,0,5,5,3
-Uruguay,South America,106855,3.08,1,2,2,18,97,32,129,23
+Peru,South America,619045,1.9,3,14,17,112,666,114,780,160
+Suriname,South America,1747,0.3,0,0,0,0,0,5,5,3
+Uruguay,South America,107103,3.09,1,2,2,18,100,34,134,23
 Venezuela,South America,173125,0.61,1,4,5,34,180,53,233,48
-Albania,Europe,3280,0.12,0,1,1,1,6,8,14,4
+Albania,Europe,3216,0.11,0,1,0,1,6,8,14,3
 Armenia,Europe,3537,0.12,0,1,0,0,0,5,5,4
 Austria,Europe,4662,0.052273915316257184,0,0,0,2,14,3,17,12
 Belgium,Europe,6499,0.056211354693648116,0,0,0,2,10,2,12,7
@@ -89,32 +90,32 @@ Cambodia,Asia,15671,0.09372071227741331,0,1,4,2,10,18,28,9
 Hong Kong,Asia,24859,0.33,1,1,1,6,30,5,35,4
 India,Asia,14866,0.0010772379618657763,0,2,3,4,21,25,46,20
 Indonesia,Asia,7564,0.0027653337757867374,0,1,1,2,15,9,24,6
-Israel,Asia,313,0.003395931673854722,0,0,0,0,0,4,4,0
+Israel,Asia,306,0.00337997701615629,0,0,0,0,0,4,4,0
 Japan,Asia,130260,0.1,3,6,13,25,152,99,251,65
-Kazakhstan,Asia,205,0.0010930634195396016,0,0,0,0,0,3,3,1
+Kazakhstan,Asia,230,0.001242297753925661,0,0,0,0,0,2,2,1
 Kuwait,Asia,359,0.008406186953597848,0,0,0,0,1,0,1,0
-Macau,Asia,1456,,0,0,0,0,0,2,2,1
+Macau,Asia,1463,,0,0,0,0,0,2,2,1
 Malaysia,Asia,10719,0.033112582781456956,0,0,0,0,0,28,28,8
 Mongolia,Asia,12301,0.38,0,1,1,2,12,12,24,9
 Philippines,Asia,833045,0.76,2,23,56,123,770,486,1256,185
 Singapore,Asia,3401,0.05980861244019139,0,1,0,1,7,0,7,1
 South Korea,Asia,88603,0.17,1,3,5,12,60,40,100,18
-Sri Lanka,Asia,1671,0.0076231132794633335,0,0,0,0,0,5,5,3
-Taiwan,Asia,61607,,1,2,0,16,98,10,108,12
+Sri Lanka,Asia,1631,0.007480550568521843,0,0,0,0,0,4,4,3
+Taiwan,Asia,62098,,1,2,0,16,90,8,98,10
 Thailand,Asia,23116,0.033112582781456956,0,1,2,4,21,20,41,9
-United Arab Emirates,Asia,1693,0.017117425539198903,0,0,0,1,5,1,6,0
+United Arab Emirates,Asia,1699,0.01738828029907842,0,0,0,1,5,1,6,1
 American Samoa,Oceania,16512,29.91,0,0,0,5,38,5,43,5
 Australia,Oceania,155383,0.6,5,5,7,42,235,74,309,143
-Cook Islands,Oceania,1865,,0,0,0,0,0,5,5,3
-Fiji,Oceania,22154,2.49,1,1,3,4,27,24,51,10
+Cook Islands,Oceania,1893,,0,0,0,0,0,5,5,3
+Fiji,Oceania,22827,2.55,1,1,3,4,27,25,52,11
 French Polynesia,Oceania,28965,10.31,1,1,2,11,74,23,97,29
 Guam,Oceania,2534,1.5,0,1,0,1,4,1,5,1
 Kiribati,Oceania,21853,18.3,0,0,0,2,12,30,42,2
-Marshall Islands,Oceania,6977,11.79,0,1,0,2,12,1,13,3
+Marshall Islands,Oceania,6976,11.87,0,1,0,2,12,1,13,3
 Micronesia,Oceania,6107,5.31,0,0,0,1,5,18,23,11
 Nauru,Oceania,133,1.23,0,0,0,0,0,1,1,0
-New Caledonia,Oceania,2483,0.91,0,0,0,1,6,3,9,3
-New Zealand,Oceania,116883,2.3,1,3,2,30,177,52,229,54
+New Caledonia,Oceania,2500,0.87,0,0,0,1,6,3,9,3
+New Zealand,Oceania,115236,2.34,1,3,2,30,177,51,228,52
 Niue,Oceania,312,,0,0,0,0,0,2,2,1
 Northern Mariana Islands,Oceania,897,1.56,0,0,0,0,1,0,1,1
 Palau,Oceania,509,2.83,0,0,0,0,0,1,1,1
@@ -123,18 +124,18 @@ Samoa,Oceania,83740,42.49,1,1,0,20,151,11,162,20
 Solomon Islands,Oceania,1374,0.2,0,0,0,0,0,5,5,0
 Tonga,Oceania,68305,64.62,1,2,2,21,140,35,175,21
 Tuvalu,Oceania,335,2.84,0,0,0,0,0,1,1,0
-Vanuatu,Oceania,11051,3.6,0,1,3,1,5,32,37,3
-Angola,Africa,4160,0.012656625743576764,0,1,1,1,8,10,18,1
+Vanuatu,Oceania,10210,3.4,0,1,3,1,5,32,37,2
+Angola,Africa,3490,0.01096611470555982,0,1,0,1,6,9,15,1
 Benin,Africa,4765,0.03929273084479371,0,1,0,2,13,6,19,1
-Botswana,Africa,3653,0.16,0,0,0,1,9,6,15,2
+Botswana,Africa,3826,0.16,0,0,0,1,9,7,16,2
 Burundi,Africa,823,0.006920894179527995,0,0,0,0,0,3,3,1
 Cameroon,Africa,2409,0.009074410163339382,0,1,1,0,0,14,14,1
 Cape Verde,Africa,16334,,0,1,1,4,27,14,41,6
 Central African Republic,Africa,263,0.005445140212360468,0,0,0,0,0,1,1,0
-Cote d'Ivoire,Africa,56804,0.22,0,3,17,16,133,124,257,27
+Cote d'Ivoire,Africa,52241,0.2,0,3,17,14,127,123,250,27
 Democratic Republic of the Congo,Africa,89136,,1,4,3,25,216,39,255,24
-Ethiopia,Africa,1803,0.0016086739700464908,0,0,0,0,0,4,4,1
-Ghana,Africa,96508,0.31,1,4,9,29,195,146,341,53
+Ethiopia,Africa,1943,0.001690074194257128,0,1,1,0,0,5,5,1
+Ghana,Africa,89135,0.29,1,4,11,25,188,140,328,53
 Kenya,Africa,15912,0.02958579881656805,0,1,6,2,13,43,56,5
 Lesotho,Africa,1369,0.06389776357827476,0,0,0,0,0,6,6,1
 Liberia,Africa,17823,0.35,0,1,1,5,42,16,58,5
