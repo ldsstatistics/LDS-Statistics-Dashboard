@@ -7,12 +7,12 @@ def app():
     st.title('Membership Growth Between 2019 - 2021')
     col1, col2 = st.columns([1, 4])
 
+    df = pd.read_csv('data/Membership Growth By Country.csv', thousands=',', keep_default_na=False)
+
     with col1:
         analysisSelected = st.radio('Choose Analysis', ['Membership Change', 'Growth Percentage', 'Percentage of Total Growth'])
-        numberOfCountries = st.radio('Number of Countries to Show', [10, 20, 30, 40, 50, 60], index=1)
+        numberOfCountries = st.radio('Number of Countries to Show', [10, 20, 30, 40, 50, 60, len(df)], index=1)
         continent = st.radio('Continent', ['Worldwide', 'Africa', 'Asia', 'Europe', 'North America', 'Oceania', 'South America'])
-
-    df = pd.read_csv('data/Membership Growth By Country.csv', thousands=',', keep_default_na=False)
 
     df['Membership Change'] = df['Membership - 2021'] - df['Membership - 2019']
 
@@ -96,7 +96,7 @@ def app():
         st.plotly_chart(fig, use_container_width=True)
 
     fig = go.Figure()
-    fig.add_trace(go.Bar(x=df['Year'], y=df['Membership'] / df['Population'] * 100, name=country))
+    fig.add_trace(go.Bar(x=df['Year'], y=df['Membership'] / df['Population-WPP'] * 100, name=country))
     fig.update_layout(margin=dict(l=0, r=0, t=40, b=20), xaxis_title='Year', yaxis_title='Percent Members')
     with col1:
         st.plotly_chart(fig, use_container_width=True)
@@ -124,7 +124,7 @@ def app():
         df['Annual Membership Growth Rate'] = df['Annual Membership Growth'] / (df['Membership'] - df['Membership'].diff()) * 100
         df['Annual Unit Growth'] = df['Units'].diff() / df['Year'].diff()
         df['Annual Unit Growth Rate'] = df['Annual Unit Growth'] / (df['Units'] - df['Units'].diff()) * 100
-        df['Percent Members'] = df['Membership'] / df['Population'] * 100
+        df['Percent Members'] = df['Membership'] / df['Population-WPP'] * 100
         df[analysisSelected] = pd.to_numeric(df[analysisSelected], errors='coerce')
         fig.add_trace(go.Scatter(x=df['Year'], y=df[analysisSelected], mode='lines', name=country))
     fig.update_layout(

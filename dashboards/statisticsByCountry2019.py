@@ -15,7 +15,7 @@ def app():
     df = pd.read_csv('data/Membership by country 2019.csv', thousands=',', keep_default_na=False)
     
     df['Country'] = df['Country'] + ' ' + df['Footnote']
-    data = df.sort_values(unitTypeSelected, ascending=False)
+    data = df.sort_values([unitTypeSelected, 'Country'], ascending=False)
     fig = go.Figure()
     fig.add_trace(go.Bar(x=data[unitTypeSelected][0:numberOfCountries], y=data['Country'][0:numberOfCountries], orientation='h'))
     fig.update_layout(
