@@ -21,7 +21,7 @@ def app():
     if continent != 'Worldwide':
         df = df.loc[df['Continent'] == continent]
 
-    df['Growth Percentage'] = df['Membership Change'] / df['Membership - 2009'] * 100
+    df['Growth Percentage'] = df['Membership Change'] / df['Membership - 2019'] * 100
     df['Percentage of Total Growth'] = df['Membership Change'] / totalMembershipChange * 100
     
     data = df.sort_values(analysisSelected, ascending=False)
