@@ -91,30 +91,33 @@ def app():
     df['Announcement'] = pd.to_datetime(df['Announcement'])
     df['Dedication'] = pd.to_datetime(df['Dedication'])
 
-    templeStatusCount = {'President': [], 'Announced': [], 'Completed': []}
+    templeStatusCount = {'President': [], 'Announced': [], 'Completed': [], 'Announced and Completed': []}
 
     for i, row in dfPresidents.iterrows():
         templeStatusCount['President'].append(row['President'])
-        if pd.isnull(row['Death']):
-            templeStatusCount['Announced'].append(len(df[df['Announcement'] > row['Ordination']]))
-            templeStatusCount['Completed'].append(len(df[df['Dedication'] > row['Ordination']]))
-        else:
-            templeStatusCount['Announced'].append(len(df[(df['Announcement'] > row['Ordination']) & (df['Announcement'] < row['Death'])]))
-            templeStatusCount['Completed'].append(len(df[(df['Dedication'] > row['Ordination']) & (df['Dedication'] < row['Death'])]))
+        isAnnounced = df['Announcement'] > row['Ordination']
+        isDedicated = df['Dedication'] > row['Ordination']
+        if not pd.isnull(row['Death']):
+            isAnnounced &= df['Announcement'] < row['Death']
+            isDedicated &= df['Dedication'] < row['Death']
+        templeStatusCount['Announced'].append(len(df[isAnnounced]))
+        templeStatusCount['Completed'].append(len(df[isDedicated]))
+        templeStatusCount['Announced and Completed'].append(len(df[isAnnounced & isDedicated]))
 
     templeStatusCount = pd.DataFrame(templeStatusCount)
     templeStatusCount = templeStatusCount.sort_values(by=['Announced'], ascending=False)
 
     fig = go.Figure()
     fig.add_trace(go.Bar(x=templeStatusCount['Announced'][:6], y=templeStatusCount['President'][:6], orientation='h', name='Announced'))
-    fig.add_trace(go.Bar(x=templeStatusCount['Completed'][:6], y=templeStatusCount['President'][:6], orientation='h', name='Completed', width=0.6))
+    fig.add_trace(go.Bar(x=templeStatusCount['Completed'][:6], y=templeStatusCount['President'][:6], orientation='h', name='Completed'))
+    fig.add_trace(go.Bar(x=templeStatusCount['Announced and Completed'][:6], y=templeStatusCount['President'][:6], orientation='h', name='Announced and Completed', offset=-0.15, width=0.3))
     fig.update_layout(
         margin=dict(l=10, r=10, t=100, b=20),
         title='Number of Temples Announced and Completed During Tenure as President',
         legend={'orientation': 'h', 'yanchor': 'bottom', 'y': 1.02, 'xanchor': 'right', 'x': 1},
         yaxis={'autorange': 'reversed'},
         xaxis_title='Number of Temples',
-        barmode='overlay',
+        barmode='group',
     )
     st.plotly_chart(fig, use_container_width=True)
     
