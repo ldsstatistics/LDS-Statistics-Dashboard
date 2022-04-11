@@ -6,13 +6,13 @@ def app():
     st.title('Membership by Country 2019')
     col1, col2 = st.columns([1, 4])
 
-    unitTypes = ['Members', 'Percent LDS', 'Wards & Branches', 'Wards', 'Branches', 'Districts', 'Stakes', 'Missions', 'Temples']
+    df = pd.read_csv('data/Membership by country 2019.csv', thousands=',', keep_default_na=False)
+    df['Members per Congregation'] = df['Members'] / df['Wards & Branches']
 
+    unitTypes = ['Members', 'Percent LDS', 'Members per Congregation', 'Wards & Branches', 'Wards', 'Branches', 'Districts', 'Stakes', 'Missions', 'Temples']
     with col1:
         unitTypeSelected = st.radio('Choose Analysis', unitTypes)
-        numberOfCountries = st.radio('Number of Countries to Show', [10, 20, 30, 40, 50, 60, 100], index=1)
-
-    df = pd.read_csv('data/Membership by country 2019.csv', thousands=',', keep_default_na=False)
+        numberOfCountries = st.radio('Number of Countries to Show', [10, 20, 30, 40, 50, 60, 100, len(df)], index=1)
     
     df['Country'] = df['Country'] + ' ' + df['Footnote']
     data = df.sort_values([unitTypeSelected, 'Country'], ascending=False)

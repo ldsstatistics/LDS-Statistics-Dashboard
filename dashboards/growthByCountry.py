@@ -112,7 +112,7 @@ def app():
     col1, col2 = st.columns([1, 4])
     with col1:
         countriesSelected = st.multiselect('Select Countries', countries, default=['United States', 'Brazil', 'Mexico', 'Philippines'])
-        analysisSelected = st.radio('Choose Analysis', ['Membership', 'Annual Membership Growth', 'Annual Membership Growth Rate', 'Wards', 'Branches', 'Units', 'Annual Unit Growth', 'Annual Unit Growth Rate', 'Districts', 'Stakes', 'Percent Members'])
+        analysisSelected = st.radio('Choose Analysis', ['Membership', 'Annual Membership Growth', 'Annual Membership Growth Rate', 'Wards', 'Branches', 'Units', 'Annual Unit Growth', 'Annual Unit Growth Rate', 'Districts', 'Stakes', 'Percent Members', 'Members per Congregation'])
     
     fig = go.Figure()
     for country in countriesSelected:
@@ -125,6 +125,7 @@ def app():
         df['Annual Unit Growth'] = df['Units'].diff() / df['Year'].diff()
         df['Annual Unit Growth Rate'] = df['Annual Unit Growth'] / (df['Units'] - df['Units'].diff()) * 100
         df['Percent Members'] = df['Membership'] / df['Population-WPP'] * 100
+        df['Members per Congregation'] = df['Membership'] / df['Units']
         df[analysisSelected] = pd.to_numeric(df[analysisSelected], errors='coerce')
         fig.add_trace(go.Scatter(x=df['Year'], y=df[analysisSelected], mode='lines', name=country))
     fig.update_layout(
