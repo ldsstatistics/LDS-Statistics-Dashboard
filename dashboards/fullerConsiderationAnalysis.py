@@ -1,7 +1,6 @@
 import streamlit as st
 import pandas as pd
 import plotly.graph_objects as go
-from streamlit.state.session_state import Value
 
 def oneTraceFigure(df, name, timeRange, title=None, yaxis_title=None):
     if title is None:
@@ -22,7 +21,7 @@ def oneTraceFigure(df, name, timeRange, title=None, yaxis_title=None):
 
 def app():
     st.title('[Fuller Consideration Analysis](http://www.fullerconsideration.com/membership.php)')
-    timeRange = st.slider('Time Range', min_value=1831, max_value=2060, value=[1900, 2020], args=Value)
+    timeRange = st.slider('Time Range', min_value=1831, max_value=2060, value=[1900, 2020])
 
     df = pd.read_csv('data/Membership Statistics - Data.csv', thousands=',')
 
