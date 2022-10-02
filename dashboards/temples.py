@@ -99,11 +99,11 @@ def app():
         isAnnounced = df['Announcement'] > row['Ordination']
         isDedicated = df['Dedication'] > row['Ordination']
         if not pd.isnull(row['Death']):
-            isAnnounced &= df['Announcement'] < row['Death']
-            isDedicated &= df['Dedication'] < row['Death']
+            isAnnounced &= df['Announcement'] <= row['Death']
+            isDedicated &= df['Dedication'] <= row['Death']
         else:
-            isAnnounced &= df['Announcement'] < pd.to_datetime(date.today())
-            isDedicated &= df['Dedication'] < pd.to_datetime(date.today())
+            isAnnounced &= df['Announcement'] <= pd.to_datetime(date.today())
+            isDedicated &= df['Dedication'] <= pd.to_datetime(date.today())
         templeStatusCount['Announced'].append(len(df[isAnnounced]))
         templeStatusCount['Completed'].append(len(df[isDedicated]))
         templeStatusCount['Announced and Completed'].append(len(df[isAnnounced & isDedicated]))
