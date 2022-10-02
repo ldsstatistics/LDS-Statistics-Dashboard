@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 import plotly.graph_objects as go
+from datetime import date
 
 def app():
     st.title('Temples')
@@ -55,7 +56,7 @@ def app():
         margin=dict(l=10, r=10, t=100, b=20),
         title='Temple Status',
         legend={'orientation': 'h', 'yanchor': 'bottom', 'y': 1.02, 'xanchor': 'right', 'x': 1},
-        xaxis={'range': ['1980-01-01', '2022-01-01']},
+        xaxis={'range': ['1980-01-01', '2022-11-01']},
     )
     st.plotly_chart(fig, use_container_width=True)
 
@@ -66,10 +67,10 @@ def app():
         'completed': [],
     }
 
-    for date in dataForTheYear['date']:
-        dataForTheYear['dateStr'].append(str(date) + '-01-01')
-        dataForTheYear['announced'].append(((dfEvent['type'] == 'Announcement') & (dfEvent['date'] >= str(date)) & (dfEvent['date'] < str(date + 1))).sum())
-        dataForTheYear['completed'].append(((dfEvent['type'] == 'Dedication') & (dfEvent['date'] >= str(date)) & (dfEvent['date'] < str(date + 1))).sum())
+    for year in dataForTheYear['date']:
+        dataForTheYear['dateStr'].append(str(year) + '-01-01')
+        dataForTheYear['announced'].append(((dfEvent['type'] == 'Announcement') & (dfEvent['date'] >= str(year)) & (dfEvent['date'] < str(year + 1))).sum())
+        dataForTheYear['completed'].append(((dfEvent['type'] == 'Dedication') & (dfEvent['date'] >= str(year)) & (dfEvent['date'] < str(year + 1))).sum())
 
     dfDataForTheYear = pd.DataFrame(dataForTheYear)
 
@@ -81,7 +82,7 @@ def app():
         margin=dict(l=10, r=10, t=100, b=20),
         title='Temple Building Backlog',
         legend={'orientation': 'h', 'yanchor': 'bottom', 'y': 1.02, 'xanchor': 'right', 'x': 1},
-        xaxis={'range': ['1980-01-01', '2022-01-01']},
+        xaxis={'range': ['1980-01-01', '2022-11-01']},
     )
     st.plotly_chart(fig, use_container_width=True)
 
@@ -100,6 +101,9 @@ def app():
         if not pd.isnull(row['Death']):
             isAnnounced &= df['Announcement'] < row['Death']
             isDedicated &= df['Dedication'] < row['Death']
+        else:
+            isAnnounced &= df['Announcement'] < pd.to_datetime(date.today())
+            isDedicated &= df['Dedication'] < pd.to_datetime(date.today())
         templeStatusCount['Announced'].append(len(df[isAnnounced]))
         templeStatusCount['Completed'].append(len(df[isDedicated]))
         templeStatusCount['Announced and Completed'].append(len(df[isAnnounced & isDedicated]))
