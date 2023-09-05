@@ -5,7 +5,7 @@ import plotly.graph_objects as go
 
 def pluralMarriageFig(man, dob, lastName):
     df = pd.read_csv('data/Plural Marriage/Plural Marriage - {}.csv'.format(man))
-    birth_dates = pd.to_datetime(df['Birth'])
+    birth_dates = pd.to_datetime(df['Birth'], format='mixed')
     marriage_dates = pd.to_datetime(df['Marriage Date'], format='mixed')
     ages_wives = marriage_dates - birth_dates
     ages_man = marriage_dates - pd.to_datetime(dob)
